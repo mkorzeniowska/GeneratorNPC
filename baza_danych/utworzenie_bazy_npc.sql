@@ -105,14 +105,38 @@ IF OBJECT_ID (N'Charakter', N'U') IS NULL
 BEGIN
 	CREATE TABLE [dbo].[Charakter](				
 		[charakterID] [int] IDENTITY(1,1) PRIMARY KEY,
-		[charakter] [nvarchar] (100) NOT NULL,
-		[rasaID] [int], 
-		[klasaID] [int],
+		[charakter] [nvarchar] (100) NOT NULL
         )
 
 	PRINT 'Utworzono tabelę Charakter'			
 END ELSE											
     PRINT 'Tabela Charakter już istnieje'		
+GO
+
+IF OBJECT_ID (N'Charakter_Rasy', N'U') IS NULL		
+BEGIN
+	CREATE TABLE [dbo].[Charakter_Rasy](				
+		[charakter_rasyID] [int] IDENTITY(1,1) PRIMARY KEY,
+		[charakterID] [int],
+		[rasaID] [int]
+        )
+
+	PRINT 'Utworzono tabelę Charakter_Rasy'			
+END ELSE											
+    PRINT 'Tabela Charakter_Rasy już istnieje'		
+GO
+
+IF OBJECT_ID (N'Charakter_Klasy', N'U') IS NULL		
+BEGIN
+	CREATE TABLE [dbo].[Charakter_Klasy](				
+		[charakter_klasyID] [int] IDENTITY(1,1) PRIMARY KEY, 
+		[charakterID] [int],
+		[klasaID] [int]
+        )
+
+	PRINT 'Utworzono tabelę Charakter_Klasy'			
+END ELSE											
+    PRINT 'Tabela Charakter_Klasy już istnieje'		
 GO
 
 IF OBJECT_ID (N'Atrybuty', N'U') IS NULL		
@@ -150,15 +174,64 @@ IF OBJECT_ID (N'Umiejetnosci', N'U') IS NULL
 BEGIN
 	CREATE TABLE [dbo].[Umiejetnosci](				
 		[umiejetnoscID] [int] IDENTITY(1,1) PRIMARY KEY,
-		[umiejetnosc] [nvarchar] (100) NOT NULL,
-		[rasaID] [int] NOT NULL, 
-		[podrasaID] [int],
-		[klasaID] [int]
+		[umiejetnosc] [nvarchar] (100) NOT NULL
         )
 
 	PRINT 'Utworzono tabelę Umiejetnosci'			
 END ELSE											
     PRINT 'Tabela Umiejetnosci już istnieje'		
+GO
+
+IF OBJECT_ID (N'Umiejetnosci_Rasa', N'U') IS NULL		
+BEGIN
+	CREATE TABLE [dbo].[Umiejetnosci_Rasa](				
+		[umiejetnosc_rasaID] [int] IDENTITY(1,1) PRIMARY KEY,
+		[umiejetnoscID] [int],
+		[rasaID] [int], 
+        )
+
+	PRINT 'Utworzono tabelę Umiejetnosci_Rasa'			
+END ELSE											
+    PRINT 'Tabela Umiejetnosci_Rasa już istnieje'		
+GO
+
+IF OBJECT_ID (N'Umiejetnosci_Podrasa', N'U') IS NULL		
+BEGIN
+	CREATE TABLE [dbo].[Umiejetnosci_Podrasa](				
+		[umiejetnosc_podrasaID] [int] IDENTITY(1,1) PRIMARY KEY,
+		[umiejetnoscID] [int],
+		[podrasaID] [int] NOT NULL, 
+        )
+
+	PRINT 'Utworzono tabelę Umiejetnosci_Podrasa'			
+END ELSE											
+    PRINT 'Tabela Umiejetnosci_Podrasa już istnieje'		
+GO
+
+IF OBJECT_ID (N'Umiejetnosci_Podrasa', N'U') IS NULL		
+BEGIN
+	CREATE TABLE [dbo].[Umiejetnosci_Klasa](				
+		[umiejetnosc_klasaID] [int] IDENTITY(1,1) PRIMARY KEY,
+		[umiejetnoscID] [int],
+		[klasaID] [int] NOT NULL, 
+        )
+
+	PRINT 'Utworzono tabelę Umiejetnosci_Klasa'			
+END ELSE											
+    PRINT 'Tabela Umiejetnosci_Klasa już istnieje'		
+GO
+
+IF OBJECT_ID (N'Umiejetnosci_Person', N'U') IS NULL		
+BEGIN
+	CREATE TABLE [dbo].[Umiejetnosci_Person](				
+		[umiejetnosc_personID] [int] IDENTITY(1,1) PRIMARY KEY,
+		[umiejetnoscID] [int],
+		[personID] [int]
+        )
+
+	PRINT 'Utworzono tabelę Umiejetnosci_Klasa'			
+END ELSE											
+    PRINT 'Tabela Umiejetnosci_Klasa już istnieje'		
 GO
 
 IF OBJECT_ID (N'Wyglad', N'U') IS NULL		
@@ -183,7 +256,7 @@ BEGIN
 		[osobowoscID] [int] IDENTITY(1,1) PRIMARY KEY,
 		[cecha] [nvarchar] (500) NOT NULL
 		)
-
+		
 	PRINT 'Utworzono tabelę Osobowosc'			
 END ELSE											
     PRINT 'Tabela Osobowosc już istnieje'		
@@ -199,16 +272,14 @@ BEGIN
 		[podrasaID] [int],
 		[klasaID] [int] NOT NULL,
 		[atrybutID] [int] NOT NULL,
-		[umiejetnoscID] [int] NOT NULL,
 		[charakterID] [int] NOT NULL,
 		[wygladID] [int] NOT NULL,
 		[plecID] [int] NOT NULL,
-		[osobowoscID] [int] NOT NULL,
+		[osobowoscID] [int] NOT NULL, --jak dodać dwie cechy? 2x osobowoscID?
 		CONSTRAINT [FK_Person1] FOREIGN KEY ([rasaID]) REFERENCES [dbo].[Rasa] ([rasaID]),
 		CONSTRAINT [FK_Person2] FOREIGN KEY([podrasaID])  REFERENCES [dbo].[Podrasa] ([podrasaID]),
 		CONSTRAINT [FK_Person3] FOREIGN KEY([klasaID])  REFERENCES [dbo].[Klasa] ([klasaID]),
 		CONSTRAINT [FK_Person4] FOREIGN KEY ([atrybutID]) REFERENCES [dbo].[Atrybuty] ([atrybutID]),
-	    CONSTRAINT [FK_Person5] FOREIGN KEY ([umiejetnoscID]) REFERENCES [dbo].[Umiejetnosci] ([umiejetnoscID]),
 		CONSTRAINT [FK_Person6] FOREIGN KEY ([charakterID]) REFERENCES [dbo].[Charakter] ([charakterID]),
 		CONSTRAINT [FK_Person7] FOREIGN KEY ([wygladID]) REFERENCES [dbo].[Wyglad] ([wygladID]),
 		CONSTRAINT [FK_Person8] FOREIGN KEY ([plecID]) REFERENCES [dbo].[Plec] ([plecID]),
@@ -263,26 +334,49 @@ ALTER TABLE [dbo].[Nazwiska]  WITH CHECK ADD
 	ON UPDATE CASCADE
 GO
 
-ALTER TABLE [dbo].[Charakter]  WITH CHECK ADD  
-	CONSTRAINT [FK_Charakter1] FOREIGN KEY ([rasaID]) REFERENCES [dbo].[Rasa] ([rasaID])
+ALTER TABLE [dbo].[Charakter_Rasy]  WITH CHECK ADD  
+	CONSTRAINT [FK_Charakter_Rasy1] FOREIGN KEY ([rasaID]) REFERENCES [dbo].[Rasa] ([rasaID])
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
-	CONSTRAINT [FK_Charakter2] FOREIGN KEY ([klasaID]) REFERENCES [dbo].[Klasa] ([klasaID])
+	CONSTRAINT [FK_Charakter_Rasy2] FOREIGN KEY ([charakterID]) REFERENCES [dbo].[Charakter] ([charakterID])
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE
 GO
 
-ALTER TABLE [dbo].[Umiejetnosci]  WITH CHECK ADD  
-	CONSTRAINT [FK_Umiejetnosc1] FOREIGN KEY ([rasaID]) REFERENCES [dbo].[Rasa] ([rasaID])
+ALTER TABLE [dbo].[Charakter_Klasy]  WITH CHECK ADD  
+	CONSTRAINT [FK_Charakter_Klasy1] FOREIGN KEY ([charakterID]) REFERENCES [dbo].[Charakter] ([charakterID])
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
-	CONSTRAINT [FK_Umiejetnosc2] FOREIGN KEY ([podrasaID]) REFERENCES [dbo].[Podrasa] ([podrasaID])
-	ON DELETE NO ACTION
-	ON UPDATE CASCADE,
-	CONSTRAINT [FK_Umiejetnosc3] FOREIGN KEY ([klasaID]) REFERENCES [dbo].[Klasa] ([klasaID])
+	CONSTRAINT [FK_Charakter_Klasy2] FOREIGN KEY ([klasaID]) REFERENCES [dbo].[Klasa] ([klasaID])
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE
 GO
+
+
+ALTER TABLE [dbo].[Umiejetnosci_Rasa]  WITH CHECK ADD  
+	CONSTRAINT [FK_Umiejetnosc_Rasa1] FOREIGN KEY ([rasaID]) REFERENCES [dbo].[Rasa] ([rasaID])
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE
+GO
+
+ALTER TABLE [dbo].[Umiejetnosci_Podrasa]  WITH CHECK ADD  
+	CONSTRAINT [FK_Umiejetnosc_Podrasa1] FOREIGN KEY ([podrasaID]) REFERENCES [dbo].[Podrasa] ([podrasaID])
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE
+GO
+
+ALTER TABLE [dbo].[Umiejetnosci_Klasa]  WITH CHECK ADD  
+	CONSTRAINT [FK_Umiejetnosc_Klasa1] FOREIGN KEY ([klasaID]) REFERENCES [dbo].[Klasa] ([klasaID])
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE
+GO
+
+ALTER TABLE [dbo].[Umiejetnosci_Person]  WITH CHECK ADD  
+	CONSTRAINT [FK_Umiejetnosc_Person1] FOREIGN KEY ([personID]) REFERENCES [dbo].[Person] ([personID])
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE
+GO
+
 
 ALTER TABLE [dbo].[Wyglad]  WITH CHECK ADD  
 	CONSTRAINT [FK_Wyglad1] FOREIGN KEY ([wiekID]) REFERENCES [dbo].[Wiek] ([wiekID]),
