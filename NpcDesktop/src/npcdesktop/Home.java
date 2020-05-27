@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package npcdesktop;
 
-/**
- *
- * @author Admin
- */
 public class Home extends javax.swing.JFrame {
 
     /**
@@ -16,6 +7,8 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        characterSheetPanel1.setVisible(false);    
+        rightPanelWithSaveButton2.setVisible(false);
     }
 
     /**
@@ -30,39 +23,24 @@ public class Home extends javax.swing.JFrame {
         headerPanel = new javax.swing.JPanel();
         headerLabel = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
-        buttonPanel = new javax.swing.JPanel();
-        sexLabel = new javax.swing.JLabel();
-        sexBox = new javax.swing.JComboBox<>();
-        raceLabel = new javax.swing.JLabel();
-        raceBox = new javax.swing.JComboBox<>();
-        subraceBox = new javax.swing.JComboBox<>();
-        classBox = new javax.swing.JComboBox<>();
-        alingmentBox = new javax.swing.JComboBox<>();
-        subraceLabel = new javax.swing.JLabel();
-        classLabel = new javax.swing.JLabel();
-        alingmentLabel = new javax.swing.JLabel();
-        ageBox = new javax.swing.JComboBox<>();
-        ageLabel = new javax.swing.JLabel();
-        generateButton = new javax.swing.JButton();
-        resetButton = new javax.swing.JButton();
-        buttonPanel1 = new javax.swing.JPanel();
-        nameLabel = new javax.swing.JLabel();
-        nameBox = new javax.swing.JComboBox<>();
-        raceLabel2 = new javax.swing.JLabel();
-        raceBox2 = new javax.swing.JComboBox<>();
-        classBox1 = new javax.swing.JComboBox<>();
-        classLabel2 = new javax.swing.JLabel();
-        selectButton = new javax.swing.JButton();
-        resetButton2 = new javax.swing.JButton();
-        centerPanel = new javax.swing.JPanel();
+        generateButtonPanel1 = new npcdesktop.GenerateButtonPanel();
+        selectButtonPanel1 = new npcdesktop.selectButtonPanel();
+        rightPanelWithSaveButton2 = new npcdesktop.RightPanelWithSaveButton();
+        characterSheetPanel1 = new npcdesktop.CharacterSheetPanel();
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Generator NPC");
-        setBackground(new java.awt.Color(102, 102, 102));
+        setBackground(new java.awt.Color(255, 255, 255));
         setForeground(java.awt.Color.white);
+        setLocation(new java.awt.Point(300, 0));
+        setMaximumSize(new java.awt.Dimension(1000, 1000));
+        setMinimumSize(new java.awt.Dimension(500, 500));
+        setPreferredSize(new java.awt.Dimension(880, 700));
 
         headerPanel.setBackground(new java.awt.Color(102, 153, 255));
+        headerPanel.setMaximumSize(new java.awt.Dimension(900, 900));
+        headerPanel.setMinimumSize(new java.awt.Dimension(600, 600));
 
         headerLabel.setFont(new java.awt.Font("Ink Free", 1, 24)); // NOI18N
         headerLabel.setText("Generator NPC");
@@ -79,249 +57,59 @@ public class Home extends javax.swing.JFrame {
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(headerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
         rightPanel.setBackground(new java.awt.Color(153, 224, 248));
 
-        buttonPanel.setBackground(new java.awt.Color(0, 153, 153));
-        buttonPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Wylosuj nową postać"));
-        buttonPanel.setOpaque(false);
+        generateButtonPanel1.setOpaque(false);
 
-        sexLabel.setText("Płeć");
-
-        sexBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        raceLabel.setText("Rasa");
-
-        raceBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        subraceBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        subraceBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subraceBoxActionPerformed(evt);
-            }
-        });
-
-        classBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        alingmentBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        subraceLabel.setText("Podrasa");
-
-        classLabel.setText("Klasa");
-
-        alingmentLabel.setText("Charakter");
-
-        ageBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        ageLabel.setText("Wiek");
-
-        generateButton.setText("Losuj");
-        generateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateButtonActionPerformed(evt);
-            }
-        });
-
-        resetButton.setText("Resetuj");
-
-        javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
-        buttonPanel.setLayout(buttonPanelLayout);
-        buttonPanelLayout.setHorizontalGroup(
-            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addComponent(generateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(raceLabel)
-                            .addComponent(subraceLabel)
-                            .addComponent(classLabel)
-                            .addComponent(alingmentLabel)
-                            .addComponent(ageLabel)
-                            .addComponent(sexLabel))
-                        .addGap(12, 12, 12)
-                        .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(sexBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(classBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(subraceBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(raceBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(alingmentBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(buttonPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ageBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(33, 33, 33))))
-        );
-        buttonPanelLayout.setVerticalGroup(
-            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sexBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sexLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(raceBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(raceLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subraceBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subraceLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(classBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(classLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(alingmentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alingmentLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ageLabel))
-                .addGap(29, 29, 29)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(generateButton)
-                    .addComponent(resetButton))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
-        buttonPanel1.setBackground(new java.awt.Color(0, 153, 153));
-        buttonPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Wybierz postać"));
-        buttonPanel1.setOpaque(false);
-
-        nameLabel.setText("Imię");
-
-        nameBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        raceLabel2.setText("Rasa");
-
-        raceBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        classBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        classLabel2.setText("Klasa");
-
-        selectButton.setText("Wybierz");
-        selectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectButtonActionPerformed(evt);
-            }
-        });
-
-        resetButton2.setText("Resetuj");
-
-        javax.swing.GroupLayout buttonPanel1Layout = new javax.swing.GroupLayout(buttonPanel1);
-        buttonPanel1.setLayout(buttonPanel1Layout);
-        buttonPanel1Layout.setHorizontalGroup(
-            buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(buttonPanel1Layout.createSequentialGroup()
-                        .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(buttonPanel1Layout.createSequentialGroup()
-                                .addGap(151, 151, 151)
-                                .addComponent(resetButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(33, Short.MAX_VALUE))
-                    .addGroup(buttonPanel1Layout.createSequentialGroup()
-                        .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(buttonPanel1Layout.createSequentialGroup()
-                                .addComponent(classLabel2)
-                                .addGap(31, 31, 31)
-                                .addComponent(classBox1, 0, 179, Short.MAX_VALUE))
-                            .addGroup(buttonPanel1Layout.createSequentialGroup()
-                                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(raceLabel2)
-                                    .addComponent(nameLabel))
-                                .addGap(34, 34, 34)
-                                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nameBox, 0, 179, Short.MAX_VALUE)
-                                    .addComponent(raceBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        buttonPanel1Layout.setVerticalGroup(
-            buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(raceBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(raceLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(classBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(classLabel2))
-                .addGap(40, 40, 40)
-                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selectButton)
-                    .addComponent(resetButton2))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        selectButtonPanel1.setOpaque(false);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(19, 19, 19))
+            .addGroup(rightPanelLayout.createSequentialGroup()
+                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rightPanelLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(selectButtonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(generateButtonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(buttonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(generateButtonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectButtonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        centerPanel.setBackground(new java.awt.Color(255, 255, 255));
-
+        imageLabel.setBackground(new java.awt.Color(255, 255, 255));
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dragon_runner.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout centerPanelLayout = new javax.swing.GroupLayout(centerPanel);
-        centerPanel.setLayout(centerPanelLayout);
-        centerPanelLayout.setHorizontalGroup(
-            centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, centerPanelLayout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
-        );
-        centerPanelLayout.setVerticalGroup(
-            centerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(centerPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        imageLabel.getAccessibleContext().setAccessibleName("imageLabel");
+        imageLabel.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rightPanelWithSaveButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(characterSheetPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -329,27 +117,19 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(rightPanelWithSaveButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rightPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(characterSheetPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        imageLabel.getAccessibleContext().setAccessibleName("imageLabel");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void subraceBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subraceBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_subraceBoxActionPerformed
-
-    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
-        // TODO add your handling code here:
-        new GenerateCharacter().setVisible(true);
-    }//GEN-LAST:event_generateButtonActionPerformed
-
-    private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-        // TODO add your handling code here:
-        new FindCharacter().setVisible(true);
-    }//GEN-LAST:event_selectButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,6 +160,7 @@ public class Home extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Home().setVisible(true);
             }
@@ -387,34 +168,15 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ageBox;
-    private javax.swing.JLabel ageLabel;
-    private javax.swing.JComboBox<String> alingmentBox;
-    private javax.swing.JLabel alingmentLabel;
-    private javax.swing.JPanel buttonPanel;
-    private javax.swing.JPanel buttonPanel1;
-    private javax.swing.JPanel centerPanel;
-    private javax.swing.JComboBox<String> classBox;
-    private javax.swing.JComboBox<String> classBox1;
-    private javax.swing.JLabel classLabel;
-    private javax.swing.JLabel classLabel2;
-    private javax.swing.JButton generateButton;
+    public static npcdesktop.CharacterSheetPanel characterSheetPanel1;
+    public static npcdesktop.GenerateButtonPanel generateButtonPanel1;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JLabel imageLabel;
-    private javax.swing.JComboBox<String> nameBox;
-    private javax.swing.JLabel nameLabel;
-    private javax.swing.JComboBox<String> raceBox;
-    private javax.swing.JComboBox<String> raceBox2;
-    private javax.swing.JLabel raceLabel;
-    private javax.swing.JLabel raceLabel2;
-    private javax.swing.JButton resetButton;
-    private javax.swing.JButton resetButton2;
-    private javax.swing.JPanel rightPanel;
-    private javax.swing.JButton selectButton;
-    private javax.swing.JComboBox<String> sexBox;
-    private javax.swing.JLabel sexLabel;
-    private javax.swing.JComboBox<String> subraceBox;
-    private javax.swing.JLabel subraceLabel;
+    public static javax.swing.JLabel imageLabel;
+    public static javax.swing.JPanel rightPanel;
+    public static npcdesktop.RightPanelWithSaveButton rightPanelWithSaveButton2;
+    private npcdesktop.selectButtonPanel selectButtonPanel1;
     // End of variables declaration//GEN-END:variables
+
+
 }

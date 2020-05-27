@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/NpcDesktop/src/npcdesktop/CharacterSheetPanel.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/NpcDesktop/src/npcdesktop/Home.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/NpcDesktop/src/npcdesktop/GenerateCharacter.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/NpcDesktop/src/npcdesktop/NpcDesktop.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/NpcDesktop/src/npcdesktop/GenerateButtonPanel.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/NpcDesktop/src/npcdesktop/RightPanelWithSaveButton.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/NpcDesktop/src/npcdesktop/CharacterListsPanel.java</file>
         </group>
     </open-files>
 </project-private>
