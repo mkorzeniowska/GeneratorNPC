@@ -204,6 +204,7 @@ public class GenerateButtonPanel extends javax.swing.JPanel {
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
         clearCombo();
+        CharacterSheetPanel.clearAfterReset();
     }//GEN-LAST:event_resetButtonActionPerformed
 
 

@@ -719,6 +719,7 @@ public class CharacterSheetPanel extends javax.swing.JPanel {
     
     //podział na Random i wybrane
     public static void generateCharacterSheet() {
+        clearAfterReset();
         readComboBoxValues();
         randomCharacter();
         generateSpeedAndLanguage(CharacterSheetPanel.race);
@@ -729,4 +730,12 @@ public class CharacterSheetPanel extends javax.swing.JPanel {
         generateAppearence();
         generatePersonality();
         }
+    
+    public static void clearAfterReset() {
+    	race=null;
+    	subrace=null;
+    	alignment=null;
+    	skills.clear();
+    	personality.clear();
+    }
 }

@@ -5,6 +5,17 @@
  */
 package npcdesktop;
 
+import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.text.Document;
+
 /**
  *
  * @author Admin
@@ -47,6 +58,11 @@ public class RightPanelWithSaveButton extends javax.swing.JPanel {
         });
 
         pdfButton.setText("PDF");
+        pdfButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdfButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buttonPanel1Layout = new javax.swing.GroupLayout(buttonPanel1);
         buttonPanel1.setLayout(buttonPanel1Layout);
@@ -108,6 +124,11 @@ public class RightPanelWithSaveButton extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private void pdfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfButtonActionPerformed
+        // TODO add your handling code here:
+        saveImage(Home.characterSheetPanel1);
+    }//GEN-LAST:event_pdfButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonPanel1;
@@ -116,4 +137,16 @@ public class RightPanelWithSaveButton extends javax.swing.JPanel {
     private javax.swing.JPanel rightPanel;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
+
+    public void saveImage(Component c) {
+        BufferedImage bi = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_RGB);
+    	Graphics2D g2d = bi.createGraphics();
+    	c.print(g2d);
+    	try {
+            ImageIO.write(bi, "jpg", new File("images/"+CharacterSheetPanel.name+".jpg"));
+    	}
+    	catch (IOException e) {
+    	}
+    }
+
 }
