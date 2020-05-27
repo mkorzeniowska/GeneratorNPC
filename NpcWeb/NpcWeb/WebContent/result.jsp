@@ -9,15 +9,19 @@
 <title>Rezultat operacji</title>
 </head>
 <body>
-	<h1>Oto wynik prac:</h1><br/>
 	<%
 	Person p= (Person)request.getAttribute("person");
 	%>
-	<p>
-		Imię: <%=  p.getName() %><br/>
-		Nazwisko: <%=  p.getSurname() %><br/>
-		Rasa: <%=  p.getRace() %><br/>
+	
+		
+		<h2><%=  p.getAge() %> <%=  p.getName() %> <%=  p.getSurname() %></h2>
+		<p>
+		Płeć: <%=  p.getSex() %><br/>
+		Rasa: <%=  p.getSubrace() %> <%=  p.getRace() %><br/>
+		Charakter:  <%=  p.getCharacter() %><br/>
+		Osobowość: <%=  p.getPersonality() %>
 	</p>
+	
 		<table style="width:50%" border="1">
 	<tr>
 		<th>ID</th>
