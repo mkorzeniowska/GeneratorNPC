@@ -2,6 +2,7 @@
 <!DOCTYPE xml>
 <Context>
 
+<<<<<<< HEAD
 	<Resource name="jdbc/world" 
 	auth="Container" 
 	type="javax.sql.DataSource" 
@@ -15,6 +16,8 @@
 	url="jdbc:sqlserver://127.0.0.1\\SQLEXPRESS:1433;databaseName=Cities" />
 	
 	
+=======
+>>>>>>> 7510fe1ed23a5961fcaa35827d240dff6953cee8
 	<Resource name="jdbc/NPC" 
 	auth="Container" 
 	type="javax.sql.DataSource" 
@@ -22,8 +25,8 @@
 	maxTotal="100"
 	maxIdle="30" 
 	maxWaitMillis="10000"
-	username="adm" 
-	password="1234" 
+	username="marta" 
+	password="12345" 
 	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
 	url="jdbc:sqlserver://127.0.0.1\\SQLEXPRESS:1433;databaseName=NPC" />
 	

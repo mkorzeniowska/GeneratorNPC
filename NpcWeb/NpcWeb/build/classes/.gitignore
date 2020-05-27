@@ -1,5 +1,9 @@
 /dataSource/
+<<<<<<< HEAD
 /download/
 /model/
 /servlet/
 /utility/
+=======
+/servlet/
+>>>>>>> 7510fe1ed23a5961fcaa35827d240dff6953cee8

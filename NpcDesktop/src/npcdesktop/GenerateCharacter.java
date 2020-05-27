@@ -25,21 +25,7 @@ public class GenerateCharacter extends javax.swing.JFrame {
         headerPanel = new javax.swing.JPanel();
         headerLabel = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
-        buttonPanel = new javax.swing.JPanel();
-        sexLabel = new javax.swing.JLabel();
-        sexBox = new javax.swing.JComboBox<>();
-        raceLabel = new javax.swing.JLabel();
-        raceBox = new javax.swing.JComboBox<>();
-        subraceBox = new javax.swing.JComboBox<>();
-        classBox = new javax.swing.JComboBox<>();
-        alingmentBox = new javax.swing.JComboBox<>();
-        subraceLabel = new javax.swing.JLabel();
-        classLabel = new javax.swing.JLabel();
-        alingmentLabel = new javax.swing.JLabel();
-        ageBox = new javax.swing.JComboBox<>();
-        ageLabel = new javax.swing.JLabel();
-        generateButton = new javax.swing.JButton();
-        resetButton = new javax.swing.JButton();
+        generateButtonPanelWithSubraces1 = new npcdesktop.GenerateButtonPanel();
         buttonPanel1 = new javax.swing.JPanel();
         saveButton = new javax.swing.JButton();
         pdfButton = new javax.swing.JButton();
@@ -111,107 +97,7 @@ public class GenerateCharacter extends javax.swing.JFrame {
 
         rightPanel.setBackground(new java.awt.Color(153, 224, 248));
 
-        buttonPanel.setBackground(new java.awt.Color(0, 153, 153));
-        buttonPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Wylosuj nową postać"));
-        buttonPanel.setOpaque(false);
-
-        sexLabel.setText("Płeć");
-
-        sexBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        raceLabel.setText("Rasa");
-
-        raceBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        subraceBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        subraceBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subraceBoxActionPerformed(evt);
-            }
-        });
-
-        classBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        alingmentBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        subraceLabel.setText("Podrasa");
-
-        classLabel.setText("Klasa");
-
-        alingmentLabel.setText("Charakter");
-
-        ageBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        ageLabel.setText("Wiek");
-
-        generateButton.setText("Losuj");
-
-        resetButton.setText("Resetuj");
-
-        javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
-        buttonPanel.setLayout(buttonPanelLayout);
-        buttonPanelLayout.setHorizontalGroup(
-            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addComponent(generateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(buttonPanelLayout.createSequentialGroup()
-                        .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(raceLabel)
-                            .addComponent(subraceLabel)
-                            .addComponent(classLabel)
-                            .addComponent(alingmentLabel)
-                            .addComponent(ageLabel)
-                            .addComponent(sexLabel))
-                        .addGap(12, 12, 12)
-                        .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(sexBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(classBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(subraceBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(raceBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(alingmentBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(buttonPanelLayout.createSequentialGroup()
-                                .addGap(0, 81, Short.MAX_VALUE)
-                                .addComponent(resetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ageBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(33, 33, 33))))
-        );
-        buttonPanelLayout.setVerticalGroup(
-            buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sexBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sexLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(raceBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(raceLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subraceBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subraceLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(classBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(classLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(alingmentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alingmentLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ageLabel))
-                .addGap(30, 30, 30)
-                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(generateButton)
-                    .addComponent(resetButton))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        generateButtonPanelWithSubraces1.setOpaque(false);
 
         buttonPanel1.setBackground(new java.awt.Color(0, 153, 153));
         buttonPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Zapisz postać"));
@@ -228,7 +114,7 @@ public class GenerateCharacter extends javax.swing.JFrame {
             .addGroup(buttonPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(pdfButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -250,15 +136,15 @@ public class GenerateCharacter extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(generateButtonPanelWithSubraces1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(32, 32, 32)
+                .addComponent(generateButtonPanelWithSubraces1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(buttonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -598,10 +484,6 @@ public class GenerateCharacter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void subraceBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subraceBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_subraceBoxActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -642,25 +524,18 @@ public class GenerateCharacter extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acLabel;
     private javax.swing.JLabel acValueLabel;
-    private javax.swing.JComboBox<String> ageBox;
-    private javax.swing.JLabel ageLabel;
-    private javax.swing.JComboBox<String> alingmentBox;
-    private javax.swing.JLabel alingmentLabel;
     private javax.swing.JLabel appearenceValueLabel1;
-    private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel buttonPanel1;
     private javax.swing.JPanel centerPanel;
     private javax.swing.JPanel characterSheetLabel;
     private javax.swing.JLabel charismaLabel;
     private javax.swing.JLabel charismaValueLabel;
-    private javax.swing.JComboBox<String> classBox;
-    private javax.swing.JLabel classLabel;
     private javax.swing.JLabel conditionLabel;
     private javax.swing.JLabel contValueLabel;
     private javax.swing.JPanel descriptionLabel;
     private javax.swing.JLabel dextValueLabel1;
     private javax.swing.JLabel dexterityLabel;
-    private javax.swing.JButton generateButton;
+    private npcdesktop.GenerateButtonPanel generateButtonPanelWithSubraces1;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel hpLabel;
@@ -678,16 +553,11 @@ public class GenerateCharacter extends javax.swing.JFrame {
     private javax.swing.JButton pdfButton;
     private javax.swing.JLabel personalityLabel;
     private javax.swing.JLabel personalityValueLabel;
-    private javax.swing.JComboBox<String> raceBox;
-    private javax.swing.JLabel raceLabel;
     private javax.swing.JLabel raceLabel1;
-    private javax.swing.JButton resetButton;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JButton saveButton;
     private javax.swing.JLabel sensesLabel;
     private javax.swing.JLabel sensesValueLabel;
-    private javax.swing.JComboBox<String> sexBox;
-    private javax.swing.JLabel sexLabel;
     private javax.swing.JLabel skillsLabel;
     private javax.swing.JLabel skillsValueLabel;
     private javax.swing.JLabel speedLabel;
@@ -695,8 +565,6 @@ public class GenerateCharacter extends javax.swing.JFrame {
     private javax.swing.JLabel strengtLabel;
     private javax.swing.JLabel strengtLabel1;
     private javax.swing.JLabel strengthValueLabel;
-    private javax.swing.JComboBox<String> subraceBox;
-    private javax.swing.JLabel subraceLabel;
     private javax.swing.JLabel wisdomLabel;
     private javax.swing.JLabel wisdomValueLabel1;
     // End of variables declaration//GEN-END:variables
