@@ -36,7 +36,7 @@ public class NpcUtil {
 		p.setPersonality(NpcUtil.getDbString("cecha","Osobowosc","osobowoscID",RandomInt.rand(1,personalityTsize)));
 		p.setCharacter(NpcUtil.getDbString("charakter","Charakter","charakterID",RandomInt.rand(1,characterTsize)));
 		
-		NpcUtil.setAttr(p,RandomInt.rand(1,20));	//metoda ustalajaca atrybuty
+		NpcUtil.setRandAttr(p);	//metoda ustalajaca atrybuty
 		
 		p.printAll();
 		
@@ -45,9 +45,10 @@ public class NpcUtil {
 	}
 	
 	
-	public static void setAttr(Person person, int id) throws SQLException {          //ustawia zestaw atrybutow dla danego id zestawu
+	public static void setRandAttr(Person person) throws SQLException {          //ustawia zestaw atrybutow dla danego id zestawu
 		
-		String selectQuery = String.format("SELECT *  FROM Atrybuty WHERE atrybutID=%d", id);
+		String selectQuery = String.format(
+				"SELECT TOP 1 sila, kondycja, zrecznosc, inteligencja, madrosc, charyzma  FROM Atrybuty ORDER BY NEWID()");
 		try (Connection conn = NpcConProvider.getConnection();
 	             Statement stmt = conn.createStatement();
 	             ResultSet rs = stmt.executeQuery(selectQuery);){

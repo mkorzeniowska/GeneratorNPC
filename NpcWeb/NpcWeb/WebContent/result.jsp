@@ -7,35 +7,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Rezultat operacji</title>
+<link rel="stylesheet" type="text/css" href="CSS/style.css">
 </head>
 <body>
-	<%
-	Person p= (Person)request.getAttribute("person");
-	%>
-	
-		
+	<div class=main_box>
+			<% Person p= (Person)request.getAttribute("person"); %> <!-- Pobranie atrybutu z servlertu -->
+		<h4>[#<%= p.getId() %>]</h4>	
 		<h2><%=  p.getAge() %> <%=  p.getName() %> <%=  p.getSurname() %></h2>
+		<hr/>
 		<p>
-		Płeć: <%=  p.getSex() %><br/>
-		Rasa: <%=  p.getSubrace() %> <%=  p.getRace() %><br/>
-		Charakter:  <%=  p.getCharacter() %><br/>
-		Osobowość: <%=  p.getPersonality() %>
-	</p>
-	
-		<table style="width:50%" border="1">
+		Szybkość: milion<br/>
+		Klasa pancerza: pierwsza! <br/>
+		Punkty wytrzymałości: niewiele<br/>
+		<hr/>
+		Umiejętności: <%=  p.getSkill() %><br/>
+		</p>
+			<table >
 	<tr>
-		<th>ID</th>
-		<th>Siła</th>
-		<th>Zręczność</th>
-		<th>Kondycja</th>
-		<th>Inteligencja</th>
-		<th>Wiedza</th>
-		<th>Charyzma</th>
+		<th>SI</th>
+		<th>ZR</th>
+		<th>KO</th>
+		<th>IN</th>
+		<th>WI</th>
+		<th>CH</th>
 	</tr>
 	
-	
 	<tr>
-			<td><%= p.getId() %></td>
+			
 			<td><%= p.getStrength() %></td>
 			<td><%= p.getDexterity() %></td>
 			<td><%= p.getConstitution() %></td>
@@ -45,6 +43,14 @@
 	</tr>
 	
 	</table>
-
+		
+		<p>
+		Płeć: <%=  p.getSex() %><br/>
+		Rasa: <%=  p.getSubrace() %> <%=  p.getRace() %><br/>
+		Charakter:  <%=  p.getCharacter() %><br/>
+		Osobowość: <%=  p.getPersonality() %>
+	</p>
+	
+	</div>
 </body>
 </html>
