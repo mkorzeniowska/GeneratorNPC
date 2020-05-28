@@ -8,7 +8,9 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
         characterSheetPanel1.setVisible(false);    
-        rightPanelWithSaveButton2.setVisible(false);
+        characterListsPanel.setVisible(false);
+        rightPanelWithSaveButton1.setVisible(false);
+        rightPanelToSelectCharacter2.setVisible(false);
     }
 
     /**
@@ -25,9 +27,11 @@ public class Home extends javax.swing.JFrame {
         rightPanel = new javax.swing.JPanel();
         generateButtonPanel1 = new npcdesktop.GenerateButtonPanel();
         selectButtonPanel1 = new npcdesktop.selectButtonPanel();
-        rightPanelWithSaveButton2 = new npcdesktop.RightPanelWithSaveButton();
+        rightPanelWithSaveButton1 = new npcdesktop.RightPanelWithSaveButton();
+        rightPanelToSelectCharacter2 = new npcdesktop.RightPanelToSelectCharacter();
         characterSheetPanel1 = new npcdesktop.CharacterSheetPanel();
         imageLabel = new javax.swing.JLabel();
+        characterListsPanel = new npcdesktop.CharacterListsPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Generator NPC");
@@ -36,7 +40,7 @@ public class Home extends javax.swing.JFrame {
         setLocation(new java.awt.Point(300, 0));
         setMaximumSize(new java.awt.Dimension(1000, 1000));
         setMinimumSize(new java.awt.Dimension(500, 500));
-        setPreferredSize(new java.awt.Dimension(880, 700));
+        setPreferredSize(new java.awt.Dimension(890, 700));
 
         headerPanel.setBackground(new java.awt.Color(102, 153, 255));
         headerPanel.setMaximumSize(new java.awt.Dimension(900, 900));
@@ -80,7 +84,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(generateButtonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,9 +96,14 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        characterSheetPanel1.setPreferredSize(new java.awt.Dimension(542, 606));
+
         imageLabel.setBackground(new java.awt.Color(255, 255, 255));
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dragon_runner.jpg"))); // NOI18N
         imageLabel.setOpaque(true);
+        imageLabel.setPreferredSize(new java.awt.Dimension(542, 606));
+
+        characterListsPanel.setMaximumSize(new java.awt.Dimension(900, 900));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,30 +111,39 @@ public class Home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rightPanelWithSaveButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(characterSheetPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rightPanelWithSaveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rightPanelToSelectCharacter2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(characterSheetPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(characterListsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(rightPanelWithSaveButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(characterSheetPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rightPanelToSelectCharacter2, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(rightPanelWithSaveButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rightPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(characterSheetPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(characterListsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        rightPanelWithSaveButton1.getAccessibleContext().setAccessibleParent(this);
         imageLabel.getAccessibleContext().setAccessibleName("imageLabel");
 
         pack();
@@ -168,15 +186,24 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static npcdesktop.CharacterListsPanel characterListsPanel;
     public static npcdesktop.CharacterSheetPanel characterSheetPanel1;
     public static npcdesktop.GenerateButtonPanel generateButtonPanel1;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
     public static javax.swing.JLabel imageLabel;
     public static javax.swing.JPanel rightPanel;
-    public static npcdesktop.RightPanelWithSaveButton rightPanelWithSaveButton2;
+    public static npcdesktop.RightPanelToSelectCharacter rightPanelToSelectCharacter2;
+    public static npcdesktop.RightPanelWithSaveButton rightPanelWithSaveButton1;
     private npcdesktop.selectButtonPanel selectButtonPanel1;
     // End of variables declaration//GEN-END:variables
 
-
+    public static void backToHome() {
+        characterSheetPanel1.setVisible(false);
+        rightPanelWithSaveButton1.setVisible(false);
+        rightPanelToSelectCharacter2.setVisible(false);
+        characterListsPanel.setVisible(false);
+        imageLabel.setVisible(true);
+        rightPanel.setVisible(true);
+    }
 }

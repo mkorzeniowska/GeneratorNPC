@@ -134,7 +134,12 @@ public class selectButtonPanel extends javax.swing.JPanel {
 
     private void selectButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButton1ActionPerformed
         // TODO add your handling code here:
-        
+        Home.rightPanel.setVisible(false);
+        Home.imageLabel.setVisible(false);
+        Home.characterSheetPanel1.setVisible(false);
+        Home.rightPanelToSelectCharacter2.setVisible(true);
+        Home.characterListsPanel.setVisible(true);
+
     }//GEN-LAST:event_selectButton1ActionPerformed
 
 

@@ -42,6 +42,8 @@ public class RightPanelWithSaveButton extends javax.swing.JPanel {
         buttonPanel1 = new javax.swing.JPanel();
         saveButton = new javax.swing.JButton();
         pdfButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         generateButtonPanel1 = new npcdesktop.GenerateButtonPanel();
 
         rightPanel.setBackground(new java.awt.Color(153, 224, 248));
@@ -64,25 +66,47 @@ public class RightPanelWithSaveButton extends javax.swing.JPanel {
             }
         });
 
+        backButton.setText("Wróć");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        exitButton.setText("Wyjdź");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout buttonPanel1Layout = new javax.swing.GroupLayout(buttonPanel1);
         buttonPanel1.setLayout(buttonPanel1Layout);
         buttonPanel1Layout.setHorizontalGroup(
             buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(pdfButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pdfButton, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         buttonPanel1Layout.setVerticalGroup(
             buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(pdfButton))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(buttonPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton)
+                    .addComponent(exitButton))
+                .addGap(14, 14, 14))
         );
 
         generateButtonPanel1.setOpaque(false);
@@ -129,12 +153,24 @@ public class RightPanelWithSaveButton extends javax.swing.JPanel {
         saveImage(Home.characterSheetPanel1);
     }//GEN-LAST:event_pdfButtonActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        Home.backToHome();
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JPanel buttonPanel1;
+    private javax.swing.JButton exitButton;
     private npcdesktop.GenerateButtonPanel generateButtonPanel1;
     private javax.swing.JButton pdfButton;
-    private javax.swing.JPanel rightPanel;
+    public static javax.swing.JPanel rightPanel;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 
@@ -148,5 +184,4 @@ public class RightPanelWithSaveButton extends javax.swing.JPanel {
     	catch (IOException e) {
     	}
     }
-
 }

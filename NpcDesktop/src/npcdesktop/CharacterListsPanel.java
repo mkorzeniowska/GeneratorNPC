@@ -108,6 +108,8 @@ public class CharacterListsPanel extends javax.swing.JPanel {
 
     private void readButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readButtonActionPerformed
         // TODO add your handling code here:
+        Home.characterListsPanel.setVisible(false);
+        Home.characterSheetPanel1.setVisible(true);
     }//GEN-LAST:event_readButtonActionPerformed
 
 

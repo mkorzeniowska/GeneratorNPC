@@ -432,8 +432,6 @@ public class CharacterSheetPanel extends javax.swing.JPanel {
             case "Człowiek":
                 speedValueLabel.setText("9m");
                 languageValueLabel.setText("wspólny");
-                acValueLabel.setText("");
-                hpValueLabel.setText("");
                 break;
             case "Elf":
                 speedValueLabel.setText("10,5m");
@@ -722,8 +720,8 @@ public class CharacterSheetPanel extends javax.swing.JPanel {
         clearAfterReset();
         readComboBoxValues();
         randomCharacter();
-        generateSpeedAndLanguage(CharacterSheetPanel.race);
-        generateACandHP(CharacterSheetPanel.classes);
+        generateSpeedAndLanguage(race);
+        generateACandHP(classes);
         generateNameSurname();
         generateAtributes();
         generateSkills();

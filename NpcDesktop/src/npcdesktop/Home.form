@@ -20,7 +20,7 @@
       <Dimension value="[500, 500]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[880, 700]"/>
+      <Dimension value="[890, 700]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -44,16 +44,24 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="rightPanelWithSaveButton2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="headerPanel" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="rightPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="rightPanelWithSaveButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="rightPanelToSelectCharacter2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="characterSheetPanel1" min="-2" pref="505" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="imageLabel" min="-2" pref="486" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="characterListsPanel" pref="531" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="rightPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="characterSheetPanel1" min="-2" pref="505" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Component id="imageLabel" min="-2" pref="431" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Component id="headerPanel" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -61,15 +69,18 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="headerPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="rightPanelWithSaveButton2" alignment="0" max="32767" attributes="0"/>
-                      <Component id="rightPanel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="characterSheetPanel1" alignment="0" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="rightPanelWithSaveButton1" max="32767" attributes="0"/>
+                      <Component id="rightPanel" max="32767" attributes="0"/>
+                      <Component id="characterSheetPanel1" alignment="1" min="-2" pref="595" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="imageLabel" min="-2" pref="617" max="-2" attributes="0"/>
+                  <Component id="rightPanelToSelectCharacter2" min="-2" pref="595" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="characterListsPanel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="imageLabel" alignment="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -143,13 +154,13 @@
                           <Component id="generateButtonPanel1" min="-2" pref="282" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="generateButtonPanel1" min="-2" pref="330" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -175,17 +186,27 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="npcdesktop.RightPanelWithSaveButton" name="rightPanelWithSaveButton2">
+    <Component class="npcdesktop.RightPanelWithSaveButton" name="rightPanelWithSaveButton1">
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="Form"/>
+        </Property>
+      </AccessibilityProperties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
+    </Component>
+    <Component class="npcdesktop.RightPanelToSelectCharacter" name="rightPanelToSelectCharacter2">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
     <Component class="npcdesktop.CharacterSheetPanel" name="characterSheetPanel1">
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="default"/>
+      <Properties>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[542, 606]"/>
         </Property>
-      </AccessibilityProperties>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
@@ -199,13 +220,23 @@
           <Image iconType="3" name="/images/dragon_runner.jpg"/>
         </Property>
         <Property name="opaque" type="boolean" value="true"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[542, 606]"/>
+        </Property>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="imageLabel"/>
-        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="default"/>
-        </Property>
       </AccessibilityProperties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
+    </Component>
+    <Component class="npcdesktop.CharacterListsPanel" name="characterListsPanel">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[900, 900]"/>
+        </Property>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
