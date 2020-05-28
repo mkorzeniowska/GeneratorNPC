@@ -208,7 +208,7 @@ END ELSE
     PRINT 'Tabela Umiejetnosci_Podrasa już istnieje'		
 GO
 
-IF OBJECT_ID (N'Umiejetnosci_Podrasa', N'U') IS NULL		
+IF OBJECT_ID (N'Umiejetnosci_Klasa', N'U') IS NULL		
 BEGIN
 	CREATE TABLE [dbo].[Umiejetnosci_Klasa](				
 		[umiejetnosc_klasaID] [int] IDENTITY(1,1) PRIMARY KEY,
@@ -384,8 +384,6 @@ ALTER TABLE [dbo].[Wyglad]  WITH CHECK ADD
 	CONSTRAINT [FK_Wyglad3] FOREIGN KEY ([podrasaID]) REFERENCES [dbo].[Podrasa] ([podrasaID]),
 	CONSTRAINT [FK_Wyglad4] FOREIGN KEY ([wiekID]) REFERENCES [dbo].[Wiek] ([wiekID])
 GO
-
-
 
 
 --dodać możliwość usuwania i dodawania przy foreign key
