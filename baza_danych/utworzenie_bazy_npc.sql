@@ -262,6 +262,7 @@ END ELSE
     PRINT 'Tabela Osobowosc już istnieje'		
 GO
 
+--stara tabela Person
 IF OBJECT_ID (N'Person', N'U') IS NULL		
 BEGIN
 	CREATE TABLE [dbo].[Person](				
@@ -286,6 +287,33 @@ BEGIN
 		CONSTRAINT [FK_Person9] FOREIGN KEY ([osobowoscID]) REFERENCES [dbo].[Osobowosc] ([osobowoscID]),
 		CONSTRAINT [FK_Person10] FOREIGN KEY ([imieID]) REFERENCES [dbo].[Imiona] ([imieID]),
 		CONSTRAINT [FK_Person11] FOREIGN KEY ([nazwiskoID]) REFERENCES [dbo].[Nazwiska] ([nazwiskoID])
+		)
+
+	PRINT 'Utworzono tabelę Person'			
+END ELSE											
+    PRINT 'Tabela Person już istnieje'		
+GO
+
+--nowa tabela Person
+IF OBJECT_ID (N'Person', N'U') IS NULL		
+BEGIN
+	CREATE TABLE [dbo].[Person](				
+		[personID] [int] IDENTITY(1,1) PRIMARY KEY,
+		[plec] [nvarchar] (500) NOT NULL,
+		[imie] [nvarchar] (500) NOT NULL,
+		[nazwisko] [nvarchar] (500) NOT NULL,
+		[rasa] [nvarchar] (500) NOT NULL,
+		[podrasa] [nvarchar] (500),
+		[klasa] [nvarchar] (500) NOT NULL,
+		[charakter] [nvarchar] (500) NOT NULL,
+		[sila] [int] NOT NULL,
+		[kondycja] [int] NOT NULL,
+		[zrecznosc] [int] NOT NULL,
+		[inteligencja] [int] NOT NULL,
+		[madrosc] [int] NOT NULL,
+		[charyzma] [int] NOT NULL,
+		[wyglad] [nvarchar] (500),
+		[osobowosc] [nvarchar] (500)
 		)
 
 	PRINT 'Utworzono tabelę Person'			
