@@ -2,6 +2,13 @@
 * {
 	
 }
+#home{
+	height: 500px;
+	background-image: url(../images/home_bg.jpg);
+	background-repeat: no-repeat;
+    background-position: center top;
+
+}
 hr{
 	border-color: #009999;
 	border-width: 1px;

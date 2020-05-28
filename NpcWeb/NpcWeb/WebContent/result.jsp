@@ -17,14 +17,14 @@
 		<h2><%=  p.getAge() %> <%=  p.getName() %> <%=  p.getSurname() %></h2>
 		<b>Rasa:</b> <%=  p.getSubrace() %> <%=  p.getRace() %>
 		<b>Charakter:</b>  <%=  p.getCharacter() %><br/>
+		
 		<hr/>
-		<p>
+
 		Szybkość: milion<br/>
 		Klasa pancerza: pierwsza! <br/>
 		Punkty wytrzymałości: niewiele<br/>
-		<hr/>
 		
-		</p>
+		<hr/>
 		<table >
 	<tr>
 		<th>SI</th>
@@ -48,6 +48,7 @@
 		Umiejętności: <%=  p.getSkill() %><br/>
 		Płeć: <%=  p.getSex() %><br/>
 		</p>
+		
 		</div>
 		<div class="inbox2">	
 		Osobowość: <%=  p.getPersonality() %><br/>
