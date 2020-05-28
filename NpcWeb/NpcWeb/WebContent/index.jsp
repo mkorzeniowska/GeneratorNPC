@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
+<link rel="stylesheet" type="text/css" href="CSS/style.css">
 </head>
 <body>
 <h1>Bohaterowie!</h1>

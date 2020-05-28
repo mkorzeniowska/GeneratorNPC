@@ -5,6 +5,7 @@
 hr{
 	border-color: #009999;
 	border-width: 1px;
+	width: 95%;'
 }
 body {
   font: normal medium/1.4 sans-serif;
@@ -12,12 +13,11 @@ body {
 }
 table {
   border-collapse: collapse;
-  width: 50%;
+  width: 75%;
   text-align: center;
-}
+  margin: 0 auto; /* same as margin: 0 25%;  */}
 th, td {
   padding: 0.25rem;
-  
   border: 1px solid #ccc;
 }
 tbody tr:nth-child(odd) {
@@ -25,9 +25,23 @@ tbody tr:nth-child(odd) {
 }
 .main_box{
 	padding: 10px;
-	
 	border-width: 3px;
 	border-style: solid;
 	border-color: #9999ff;
-	
+}
+.inbox{
+	margin: 20px;
+	padding: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #009999;
+		#ffffcc
+}
+.inbox2{
+	margin: 20px;
+	padding: 10px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #009999;
+	background-color: #ffffcc;
 }
