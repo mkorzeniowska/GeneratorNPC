@@ -7,10 +7,11 @@ import utility.RandomInt;
 
 public class NpcUtil {
 	
-	
+	//generuje w pełni losową osobę
 	public static Person generateRandom() throws SQLException{
 		Person p = new Person();
-		// ustalanie ilosci wierszy w kazdej z tabael
+		// ustalanie ilosci wierszy w kazdej z tabel
+		// rozwiązanie nieoptymalne - losowy wybor można załątwić jednym zapytaniem
 		int nameTsize =getRowsOf("Imiona");
 		int sexTsize =getRowsOf("Plec");
 		int raceTsize =getRowsOf("Rasa");
@@ -44,8 +45,8 @@ public class NpcUtil {
 	
 	}
 	
-	
-	public static void setRandAttr(Person person) throws SQLException {          //ustawia zestaw atrybutow dla danego id zestawu
+	  //ustawia zestaw atrybutow dla danego id zestawu
+	public static void setRandAttr(Person person) throws SQLException {        
 		
 		String selectQuery = String.format(
 				"SELECT TOP 1 sila, kondycja, zrecznosc, inteligencja, madrosc, charyzma  FROM Atrybuty ORDER BY NEWID()");
@@ -69,6 +70,8 @@ public class NpcUtil {
 	             conn.close();  
 	        }
 	}
+	
+	//metoda zwracajaca wielkość tabeli
 	public static int getRowsOf(String tableName) throws SQLException { 
 		int tableSize = 0;
 		String selectQuery = String.format("SELECT COUNT(*) FROM %s", tableName);
@@ -85,7 +88,9 @@ public class NpcUtil {
 	        }
 		return tableSize;
 	}
-	public static String getDbString(String colName, String tableName,String idColName, int id) throws SQLException {          //pobiera z podanej bazy i zadanej kolumny string o zadanym id
+	
+	 //pobiera z podanej bazy i zadanej kolumny string o zadanym id
+	public static String getDbString(String colName, String tableName,String idColName, int id) throws SQLException {         
 		String output = null;
 		String selectQuery = String.format("SELECT %s  FROM %s WHERE %s=%d",colName, tableName,idColName, id);
 		try (Connection conn = NpcConProvider.getConnection();
@@ -104,51 +109,8 @@ public class NpcUtil {
 		
 		return output;
 	}
-	
-	public static String getName(int nameID) throws SQLException {          //pobiera z bazy imion te o zadanym id
-		String dbName = null;
-		String selectQuery = String.format("SELECT imie FROM Imiona WHERE imieID=%d",nameID);
-		try (Connection conn = NpcConProvider.getConnection();
-	             Statement stmt = conn.createStatement();
-	             ResultSet rs = stmt.executeQuery(selectQuery);){
 
-	        	 if (rs.next()) dbName = rs.getString(1); 
-	        	 
-	        	 //System.out.println(dbName); 		//to wyrzuca na konsole wynik
-	        	 
-	        	 rs.close();
-	             stmt.close();
-	             conn.close();  
-	        }
-		
-		return dbName;
-	}
-
-	public static void show() throws SQLException {
-		
-		String selectQuery = String.format("SELECT * FROM rasa");
-		
-        try (Connection conn = NpcConProvider.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(selectQuery);){
-        	
-        	 ResultSetMetaData rsmd = rs.getMetaData();
-        	 int columnsNumber = rsmd.getColumnCount(); 
-
-        	 while (rs.next()) {
-        		//Print one row          
-        		for(int i = 1 ; i <= columnsNumber; i++) 	System.out.print(rs.getString(i) + " "); 
-        																		System.out.println();
-        		    }
-        	 rs.close();
-             stmt.close();
-             conn.close();  
-        }
-        
-        
-		
-	}
-
+//metoda testowa - drukuje zadaną tablicę
 	public static void show(String tableName) throws SQLException {
 		
 		String selectQuery = String.format("SELECT * FROM %s",tableName);
