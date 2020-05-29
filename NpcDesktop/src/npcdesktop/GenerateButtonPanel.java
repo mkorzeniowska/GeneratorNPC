@@ -1,10 +1,11 @@
 package npcdesktop;
 
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import static mssql.Mssql.connection;
-import static mssql.Mssql.getData;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.NpcUtil;
+
 
 
 public class GenerateButtonPanel extends javax.swing.JPanel {
@@ -12,10 +13,11 @@ public class GenerateButtonPanel extends javax.swing.JPanel {
     /**
      * Creates new form generateButtonPanel
      */
-    public GenerateButtonPanel() {
+    public GenerateButtonPanel()  {
         initComponents();
-        fillCombo();
-        subraceBox.setEnabled(false);  
+        subraceBox.setEnabled(false);
+        Home.fillCombo();
+  
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -179,32 +181,31 @@ public class GenerateButtonPanel extends javax.swing.JPanel {
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
         // TODO add your handling code here:
-        //new GenerateCharacter().setVisible(true);
         Home.characterSheetPanel1.setVisible(true);
         Home.imageLabel.setVisible(false);
         Home.rightPanel.setVisible(false);
         Home.rightPanelWithSaveButton1.setVisible(true);
-        CharacterSheetPanel.generateCharacterSheet();
+        Home.generateCharacterSheet();
  
     }//GEN-LAST:event_generateButtonActionPerformed
 
     private void raceBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raceBoxActionPerformed
         // TODO add your handling code here:
-        CharacterSheetPanel.race = String.valueOf(raceBox.getSelectedItem());
-        fillAlignment();
-        if("Elf".equals(CharacterSheetPanel.race) || "Krasnolud".equals(CharacterSheetPanel.race) || 
-                "Niziołek".equals(CharacterSheetPanel.race) || "Gnom".equals(CharacterSheetPanel.race)){      
-            fillSubraces();
+        NpcUtil.race = String.valueOf(raceBox.getSelectedItem());
+        Home.fillAlignment();
+        {if("Elf".equals(NpcUtil.race) || "Krasnolud".equals(NpcUtil.race) || 
+                "Niziołek".equals(NpcUtil.race) || "Gnom".equals(NpcUtil.race)){      
+            Home.fillSubraces();
             subraceBox.setEnabled(true);
             }
         else {
             subraceBox.setEnabled(false);}
     }//GEN-LAST:event_raceBoxActionPerformed
-
+    }
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
-        clearCombo();
-        CharacterSheetPanel.clearAfterReset();
+        Home.clearComboBoxes();
+        Home.clearAfterReset();
     }//GEN-LAST:event_resetButtonActionPerformed
 
 
@@ -225,114 +226,8 @@ public class GenerateButtonPanel extends javax.swing.JPanel {
     public static javax.swing.JComboBox<String> subraceBox;
     private javax.swing.JLabel subraceLabel;
     // End of variables declaration//GEN-END:variables
-    private String random = "Random";
-    private String[] columns = {"plec", "rasa", "podrasa", "klasa", "charakter", "wiek"};
-    private String[] tables = {"Plec", "Rasa", "Podrasa", "Klasa", "Charakter", "Wiek"};
+
     
 
-    //wypelnienie listy typu JComboBox danymi produktow
-    private void fillCombo() {
-  
-    try {
-        //sex 
-        String sqlQuery = String.format("SELECT %s FROM %s", columns[0], tables[0]);
-        ResultSet resultSet = getData(sqlQuery);
-        sexBox.removeAllItems();
-        sexBox.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[0]);
-            sexBox.addItem(s);
-        }
-        //race
-        sqlQuery = String.format("SELECT %s FROM %s", columns[1], tables[1]);
-        resultSet = getData(sqlQuery);
-        raceBox.removeAllItems();
-        raceBox.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[1]);
-            raceBox.addItem(s);
-        }
-        //subraces
-        subraceBox.removeAllItems();
-        subraceBox.addItem(random);
 
-        //classes
-        sqlQuery = String.format("SELECT %s FROM %s", columns[3], tables[3]);
-        resultSet = getData(sqlQuery);
-        classBox.removeAllItems();
-        classBox.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[3]);
-            classBox.addItem(s);
-        }
-        //alingment
-        sqlQuery = String.format("SELECT %s FROM %s", columns[4], tables[4]);
-        resultSet = getData(sqlQuery);
-        alignmentBox.removeAllItems();
-        alignmentBox.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[4]);
-            alignmentBox.addItem(s);
-        }
-        //age
-        sqlQuery = String.format("SELECT %s FROM %s", columns[5], tables[5]);
-        resultSet = getData(sqlQuery);
-        ageBox.removeAllItems();
-        ageBox.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[5]);
-            ageBox.addItem(s);
-        }
-        connection.close();
-        
-    } catch (Exception e) {
-        //Gdyby coś poszło nie tak, wydrukuj komunikat...
-        System.out.println(e.getMessage());
-    }
-    
-    }
-    
-    private void fillSubraces() {
-        try{
-        //subraces;
-        String sqlQuery = String.format("SELECT p.podrasa FROM Podrasa AS p, Rasa AS r WHERE p.rasaID=r.rasaID AND r.rasa='%s'", CharacterSheetPanel.race);
-        ResultSet resultSet = getData(sqlQuery);
-        subraceBox.removeAllItems();
-        subraceBox.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[2]);
-            subraceBox.addItem(s);
-        }
-        }  
-        catch (Exception e) {
-         System.out.println(e.getMessage());}
-    }
-    
-    private void fillAlignment() {
-        try{
-            String sqlQuery = String.format("SELECT c.charakterID, charakter\n" +
-                                             "FROM Charakter c\n" +
-                                             "JOIN Charakter_Rasy cr ON c.charakterID=cr.charakterID \n" +
-                                             "JOIN Rasa r ON cr.rasaID=r.rasaID\n" +
-                                             "WHERE r.rasa='%s' " , CharacterSheetPanel.race);
-            ResultSet resultSet = getData(sqlQuery);
-            alignmentBox.removeAllItems();
-            alignmentBox.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[4]);
-            alignmentBox.addItem(s);
-        }
-    }  
-        catch (ClassNotFoundException | SQLException e) {
-         System.out.println(e.getMessage());}
-    }
-    
-    public static void clearCombo() {
-        sexBox.setSelectedIndex(0);
-        raceBox.setSelectedIndex(0);
-        subraceBox.setSelectedIndex(0);
-        classBox.setSelectedIndex(0);
-        alignmentBox.setSelectedIndex(0);
-        ageBox.setSelectedIndex(0);
-    }
 }

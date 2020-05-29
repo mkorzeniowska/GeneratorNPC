@@ -2,8 +2,7 @@
 package npcdesktop;
 
 import java.sql.ResultSet;
-import static mssql.Mssql.connection;
-import static mssql.Mssql.getData;
+
 
 
 public class selectButtonPanel extends javax.swing.JPanel {
@@ -13,7 +12,7 @@ public class selectButtonPanel extends javax.swing.JPanel {
      */
     public selectButtonPanel() {
         initComponents();
-        fillCombo();
+        //Home.fillCombo();
     }
 
     /**
@@ -155,48 +154,8 @@ public class selectButtonPanel extends javax.swing.JPanel {
     private javax.swing.JButton selectButton1;
     // End of variables declaration//GEN-END:variables
 
-    private String random = "Random";
-    private String[] columns = {"imie", "rasa", "podrasa", "klasa", "charakter", "wiek"};
-    private String table = "Postac";
-    //private JComboBox[] comboList = {sexBox, raceBox, subraceBox, classBox, alingmentBox, ageBox};
+ 
     
-    //wypelnienie listy typu JComboBox danymi produktow
-    private void fillCombo() {
-  
-    try {
-        //name 
-        String sqlQuery = String.format("SELECT %s FROM %s", columns[0], table);
-        ResultSet resultSet = getData(sqlQuery);
-        nameBox.removeAllItems();
-        nameBox.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[0]);
-            nameBox.addItem(s);
-        }
-        //race
-        sqlQuery = String.format("SELECT %s FROM %s", columns[1], table);
-        resultSet = getData(sqlQuery);
-        raceBox1.removeAllItems();
-        raceBox1.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[1]);
-            raceBox1.addItem(s);
-        }
-        //classes
-        sqlQuery = String.format("SELECT %s FROM %s", columns[3], table);
-        resultSet = getData(sqlQuery);
-        classBox1.removeAllItems();
-        classBox1.addItem(random);
-        while(resultSet.next()) {
-            String  s = resultSet.getString(columns[3]);
-            classBox1.addItem(s);
-        }
-        connection.close();
-        
-    } catch (Exception e) {
-        //Gdyby coś poszło nie tak, wydrukuj komunikat...
-        System.out.println(e.getMessage());
-    }
-    
-    }
+    //wypelnienie listy typu JComboBox danymi 
+
 }

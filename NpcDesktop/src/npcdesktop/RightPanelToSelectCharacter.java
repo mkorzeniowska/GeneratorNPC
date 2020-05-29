@@ -7,18 +7,15 @@ package npcdesktop;
 
 import java.awt.Component;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.text.Document;
+
 
 /**
  *
- * @author Admin
+ * @author Marta
  */
 public class RightPanelToSelectCharacter extends javax.swing.JPanel {
 
@@ -261,7 +258,7 @@ public class RightPanelToSelectCharacter extends javax.swing.JPanel {
 
     private void raceBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raceBoxActionPerformed
         // TODO add your handling code here:
-        CharacterSheetPanel.race = String.valueOf(raceBox.getSelectedItem());
+        
     }//GEN-LAST:event_raceBoxActionPerformed
 
     private void subraceBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subraceBoxActionPerformed
@@ -281,13 +278,13 @@ public class RightPanelToSelectCharacter extends javax.swing.JPanel {
 
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         // TODO add your handling code here:
-        GenerateButtonPanel.clearCombo();
-        CharacterSheetPanel.clearAfterReset();
+        Home.clearComboBoxes();
+        Home.clearAfterReset();
     }//GEN-LAST:event_resetButtonActionPerformed
 
     private void pdfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfButtonActionPerformed
         // TODO add your handling code here:
-        saveImage(Home.characterSheetPanel1);
+        Home.saveImage(Home.characterSheetPanel1);
     }//GEN-LAST:event_pdfButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -324,14 +321,5 @@ public class RightPanelToSelectCharacter extends javax.swing.JPanel {
     private javax.swing.JLabel subraceLabel;
     // End of variables declaration//GEN-END:variables
 
-    public void saveImage(Component c) {
-        BufferedImage bi = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_RGB);
-    	Graphics2D g2d = bi.createGraphics();
-    	c.print(g2d);
-    	try {
-            ImageIO.write(bi, "jpg", new File("images/"+CharacterSheetPanel.name+".jpg"));
-    	}
-    	catch (IOException e) {
-    	}
-    }
+
 }

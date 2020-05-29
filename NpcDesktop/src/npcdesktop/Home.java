@@ -1,16 +1,38 @@
 package npcdesktop;
 
+import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import model.Person;
+import util.NpcUtil;
+import static npcdesktop.GenerateButtonPanel.*;
+import static npcdesktop.GenerateButtonPanel.alignmentBox;
+import static npcdesktop.GenerateButtonPanel.classBox;
+import static npcdesktop.GenerateButtonPanel.raceBox;
+import static npcdesktop.GenerateButtonPanel.sexBox;
+import static npcdesktop.GenerateButtonPanel.subraceBox;
+
 public class Home extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
-    public Home() {
+    public Home()  {
         initComponents();
         characterSheetPanel1.setVisible(false);    
         characterListsPanel.setVisible(false);
         rightPanelWithSaveButton1.setVisible(false);
         rightPanelToSelectCharacter2.setVisible(false);
+        
+
     }
 
     /**
@@ -25,8 +47,8 @@ public class Home extends javax.swing.JFrame {
         headerPanel = new javax.swing.JPanel();
         headerLabel = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
-        generateButtonPanel1 = new npcdesktop.GenerateButtonPanel();
-        selectButtonPanel1 = new npcdesktop.selectButtonPanel();
+        generateButtonPanel = new npcdesktop.GenerateButtonPanel();
+        selectButtonPanel = new npcdesktop.selectButtonPanel();
         rightPanelWithSaveButton1 = new npcdesktop.RightPanelWithSaveButton();
         rightPanelToSelectCharacter2 = new npcdesktop.RightPanelToSelectCharacter();
         characterSheetPanel1 = new npcdesktop.CharacterSheetPanel();
@@ -38,9 +60,9 @@ public class Home extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(java.awt.Color.white);
         setLocation(new java.awt.Point(300, 0));
-        setMaximumSize(new java.awt.Dimension(1000, 1000));
+        setMaximumSize(new java.awt.Dimension(900, 900));
         setMinimumSize(new java.awt.Dimension(500, 500));
-        setPreferredSize(new java.awt.Dimension(890, 700));
+        setPreferredSize(new java.awt.Dimension(880, 700));
 
         headerPanel.setBackground(new java.awt.Color(102, 153, 255));
         headerPanel.setMaximumSize(new java.awt.Dimension(900, 900));
@@ -67,32 +89,31 @@ public class Home extends javax.swing.JFrame {
         );
 
         rightPanel.setBackground(new java.awt.Color(153, 224, 248));
+        rightPanel.setPreferredSize(new java.awt.Dimension(321, 525));
 
-        generateButtonPanel1.setOpaque(false);
+        generateButtonPanel.setOpaque(false);
 
-        selectButtonPanel1.setOpaque(false);
+        selectButtonPanel.setOpaque(false);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(selectButtonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(generateButtonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(generateButtonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(rightPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(selectButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(generateButtonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectButtonPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(generateButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(selectButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -124,7 +145,8 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(characterListsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)))
+                        .addComponent(characterListsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,15 +154,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(rightPanelWithSaveButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(characterSheetPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rightPanelToSelectCharacter2, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(characterListsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(characterSheetPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rightPanelToSelectCharacter2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rightPanelWithSaveButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rightPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addComponent(characterListsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         rightPanelWithSaveButton1.getAccessibleContext().setAccessibleParent(this);
@@ -177,27 +198,35 @@ public class Home extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Home().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Home().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static npcdesktop.CharacterListsPanel characterListsPanel;
     public static npcdesktop.CharacterSheetPanel characterSheetPanel1;
-    public static npcdesktop.GenerateButtonPanel generateButtonPanel1;
+    public static npcdesktop.GenerateButtonPanel generateButtonPanel;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
     public static javax.swing.JLabel imageLabel;
     public static javax.swing.JPanel rightPanel;
     public static npcdesktop.RightPanelToSelectCharacter rightPanelToSelectCharacter2;
     public static npcdesktop.RightPanelWithSaveButton rightPanelWithSaveButton1;
-    private npcdesktop.selectButtonPanel selectButtonPanel1;
+    public static npcdesktop.selectButtonPanel selectButtonPanel;
     // End of variables declaration//GEN-END:variables
+    // my variables for comboBox
+    public static String random = "Random";
+    public static String table = "Postac";
+    public static String[] columns = {"plec", "rasa", "podrasa", "klasa", "charakter", "wiek"};
+    public static  String[] tables = {"Plec", "Rasa", "Podrasa", "Klasa", "Charakter", "Wiek"};
 
+    public static int bonus;
+    //public static ArrayList<String> personality = new ArrayList<String>();
+    //public static ArrayList<String> skills = new ArrayList<String>();
+    
+    
+    //metody dla buttonów
     public static void backToHome() {
         characterSheetPanel1.setVisible(false);
         rightPanelWithSaveButton1.setVisible(false);
@@ -205,5 +234,239 @@ public class Home extends javax.swing.JFrame {
         characterListsPanel.setVisible(false);
         imageLabel.setVisible(true);
         rightPanel.setVisible(true);
+    }
+    
+    public static void saveImage(Component c) {
+        BufferedImage bi = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_RGB);
+    	Graphics2D g2d = bi.createGraphics();
+    	c.print(g2d);
+    	try {
+            ImageIO.write(bi, "jpg", new File("images/"+ NpcUtil.name+".jpg"));
+    	}
+    	catch (IOException e) {
+    	}
+    }
+    //wypelnienie listy typu JComboBox danymi pobranymi z tabel
+    public static void fillCombo() {
+        //sex
+        sexBox.removeAllItems();
+        sexBox.addItem(random);
+        NpcUtil.getDbRows(columns[0], tables[0],  sexBox);
+        //race
+        raceBox.removeAllItems();
+        raceBox.addItem(random);
+        NpcUtil.getDbRows(columns[1], tables[1],  raceBox);
+        //subraces
+        subraceBox.removeAllItems();
+        subraceBox.addItem(random);
+        //classes
+        classBox.removeAllItems();
+        classBox.addItem(random);
+        NpcUtil.getDbRows(columns[3], tables[3], classBox);
+        //alingment
+        alignmentBox.removeAllItems();
+        alignmentBox.addItem(random);
+        NpcUtil.getDbRows(columns[4], tables[4], alignmentBox);
+        //age
+        ageBox.removeAllItems();
+        ageBox.addItem(random);
+        NpcUtil.getDbRows(columns[5], tables[5],ageBox);
+    
+    }
+    
+    public static void fillSubraces() {
+        //subraces;
+        subraceBox.removeAllItems();
+        subraceBox.addItem(random);
+        NpcUtil.getDbRowsForSubrace(columns[2], tables[2],  subraceBox);
+    }
+    
+    public static void fillAlignment()  {
+        alignmentBox.removeAllItems();
+        alignmentBox.addItem(random);
+        NpcUtil.getDbRowsForAlignment(columns[4], tables[4],  alignmentBox);
+    
+    }
+ 
+    
+    public static void clearComboBoxes() {
+        sexBox.setSelectedIndex(0);
+        raceBox.setSelectedIndex(0);
+        subraceBox.setSelectedIndex(0);
+        classBox.setSelectedIndex(0);
+        alignmentBox.setSelectedIndex(0);
+        ageBox.setSelectedIndex(0);
+    }
+    
+    //metody do wypełniania CharacterSheetPanel
+    public static void readComboBoxValues() {
+        NpcUtil.sex = String.valueOf(GenerateButtonPanel.sexBox.getSelectedItem());
+        NpcUtil.race = String.valueOf(GenerateButtonPanel.raceBox.getSelectedItem());
+        NpcUtil.subrace = String.valueOf(GenerateButtonPanel.subraceBox.getSelectedItem());
+        NpcUtil.classes = String.valueOf(GenerateButtonPanel.classBox.getSelectedItem());
+        NpcUtil.alignment = String.valueOf(GenerateButtonPanel.alignmentBox.getSelectedItem());
+        NpcUtil.age = String.valueOf(GenerateButtonPanel.ageBox.getSelectedItem());
+    }
+    
+    public static void fillSpeedAndLanguage(Person per) {
+        if(per.getRace() != null) {
+        switch (per.getRace()) {
+            case "Człowiek":
+                CharacterSheetPanel.speedValueLabel.setText("9m");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny");
+                break;
+            case "Elf":
+                CharacterSheetPanel.speedValueLabel.setText("10,5m");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny, elfi");
+                break;
+            case "Krasnolud":
+                CharacterSheetPanel.speedValueLabel.setText("7,5m");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny, krasnoludzki");
+                break;
+            case "Niziołek":
+                CharacterSheetPanel.speedValueLabel.setText("7,5m");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny, niziołczy");
+                break;
+            case "Gnom":
+                CharacterSheetPanel.speedValueLabel.setText("7,5m");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny, gnomi");
+                break;
+            case "Drakon":
+                CharacterSheetPanel.speedValueLabel.setText("9m");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny, smoczy");
+                break;
+            case "Diabelstwo":
+                CharacterSheetPanel.speedValueLabel.setText("9m");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny, piekielny");
+                break;
+            case "Półelf":
+                CharacterSheetPanel.speedValueLabel.setText("9m");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny, elfi");
+                break;
+            case "Półork":
+                CharacterSheetPanel.speedValueLabel.setText("9m");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny, orczy");
+                break;
+            default:
+                System.out.println("Hmm, niewłaściwa wartość rasy");}}
+        else {
+                CharacterSheetPanel.speedValueLabel.setText("");
+                CharacterSheetPanel.languageValueLabel.setText("wspólny");
+                }
+        
+    }
+    
+    public static void fillACandHP(Person per) {
+        if (per.getJob() != null) {
+            switch (per.getJob()) {
+                case "Barbarzyńca":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("12");
+                    break;
+                case "Bard":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("8");
+                    break;
+                case "Czarownik":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("8");
+                    break;
+                case "Druid":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("8");
+                    break;
+                case "Kleryk":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("8");
+                    break;
+                case "Łotr":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("8");
+                    break;
+                case "Łowca":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("10");
+                    break;
+                case "Mag":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("6");
+                    break;
+                case "Mnich":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("8");
+                    break;
+                case "Paladyn":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("10");
+                    break;
+                case "Wojownik":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("10");
+                    break;
+                case "Zaklinacz":
+                    CharacterSheetPanel.acValueLabel.setText("");
+                    CharacterSheetPanel.hpValueLabel.setText("6");
+                    break;
+                default:
+                    System.out.println("Hmm, niewłaściwa wartość klasy");
+            }}
+        else {
+            CharacterSheetPanel.acValueLabel.setText("");
+            CharacterSheetPanel.hpValueLabel.setText("");
+        }
+            
+    }
+    
+    public static void fillLabels(Person per) {
+        CharacterSheetPanel.nameLabel.setText(per.getName() + " " + per.getSurname());
+        if (per.getSubrace()== null) {
+        CharacterSheetPanel.raceLabel.setText(per.getRace() + ", " + per.getCharacter());}
+        else {
+        CharacterSheetPanel.raceLabel.setText(per.getRace() + ", " + per.getSubrace() + ", " + per.getCharacter());}
+        CharacterSheetPanel.strengthValueLabel.setText(Integer.toString(per.getStrength()) + " (+" + calculateBonus(per.getStrength()) + ")");
+        CharacterSheetPanel.contValueLabel.setText(Integer.toString(per.getConstitution()) + " (+" + calculateBonus(per.getConstitution()) +")");
+        CharacterSheetPanel.dextValueLabel.setText(Integer.toString(per.getDexterity()) + " (+" + calculateBonus(per.getDexterity()) + ")");
+        CharacterSheetPanel.inteligValueLabel.setText(Integer.toString(per.getIntelligence()) + " (+" + calculateBonus(per.getIntelligence()) +")");
+        CharacterSheetPanel.wisdomValueLabel.setText(Integer.toString(per.getWisdom()) + " (+" + calculateBonus(per.getWisdom()) + ")");
+        CharacterSheetPanel.charismaValueLabel.setText(Integer.toString(per.getCharisma()) + " (+" + calculateBonus(per.getWisdom()) + ")");
+        CharacterSheetPanel.personalityValueLabel.setText(per.getPersonality());
+        CharacterSheetPanel.appearenceValueLabel.setText(per.getApperance());
+        CharacterSheetPanel.skillsValueLabel.setText(per.getSkill());
+        }
+
+    
+    public static int calculateBonus(int atribute) {
+        if (atribute <= 5) {bonus = -3;}
+        else if (atribute <=7) { bonus = -2; }
+        else if (atribute <=9) {bonus = -1;}
+        else if (atribute <=11) {bonus = 0;}
+        else if (atribute <=13) {bonus = 1;}
+        else if (atribute <=15) {bonus = 2;}
+        else if (atribute <=17) {bonus = 3;}
+        else if (atribute <=19) {bonus = 4;}
+        else if (atribute <=21) {bonus = 5;}
+        return bonus;
+    }
+    
+    //podział na Random i wybrane
+    public static Person generateCharacterSheet()  {
+        Person person = new Person();
+        try {
+            clearAfterReset();
+            readComboBoxValues();
+            person = NpcUtil.randomCharacter();
+            fillSpeedAndLanguage(person);
+            fillACandHP(person);
+            fillLabels(person);
+            return person;
+        } catch (SQLException ex) {}
+        return person;
+    }
+    
+    public static void clearAfterReset() {
+    	NpcUtil.race=null;
+    	NpcUtil.subrace=null;
+    	NpcUtil.alignment=null;
+
     }
 }
