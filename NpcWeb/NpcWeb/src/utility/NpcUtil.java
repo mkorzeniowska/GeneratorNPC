@@ -1,8 +1,8 @@
-package dataSource;
+package utility;
 import java.sql.*;
 
+import dataSource.NpcConProvider;
 import model.Person;
-import utility.RandomInt;
 
 
 public class NpcUtil {
@@ -25,6 +25,7 @@ public class NpcUtil {
 		int characterTsize =getRowsOf("Charakter");
 		
 		//ustawianie pobieranie i ustawanie atrubutow dla odpowiednich tabel - losowanie id: od 1 do tabela.size()
+		
 		p.setSex(NpcUtil.getDbString("plec","Plec","plecID",RandomInt.rand(1,sexTsize)));				
 		p.setRace(NpcUtil.getDbString("rasa","Rasa","rasaID",RandomInt.rand(1,raceTsize)));
 		p.setSubrace(NpcUtil.getDbString("podrasa","Podrasa","podrasaID",RandomInt.rand(1,subraceTsize)));
@@ -38,8 +39,8 @@ public class NpcUtil {
 		p.setCharacter(NpcUtil.getDbString("charakter","Charakter","charakterID",RandomInt.rand(1,characterTsize)));
 		
 		NpcUtil.setRandAttr(p);	//metoda ustalajaca atrybuty
-		
-		p.printAll();
+		//System.out.println(getRowsOf("[Umiejetnosci_Klasa]"));
+		//p.printAll();
 		
 		return p;
 	

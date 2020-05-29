@@ -13,7 +13,7 @@
 	<div class="main_box">
 		<div class="inbox">
 			<% Person p= (Person)request.getAttribute("person"); %> <!-- Pobranie atrybutu z servlertu -->
-		<h4>[#<%= p.getId() %>] <- to by było ID delikwenta</h4>	
+		<h4>[#<%= p.getId() %>] </h4>	<%= p.getId() %><%= p.getId() %><%= p.getId() %>
 		<h2><%=  p.getAge() %> <%=  p.getName() %> <%=  p.getSurname() %></h2>
 		<b>Rasa:</b> <%=  p.getSubrace() %> <%=  p.getRace() %>
 		<b>Charakter:</b>  <%=  p.getCharacter() %><br/>
