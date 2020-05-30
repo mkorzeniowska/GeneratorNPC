@@ -220,6 +220,7 @@ public class Home extends javax.swing.JFrame {
     public static String table = "Postac";
     public static String[] columns = {"plec", "rasa", "podrasa", "klasa", "charakter", "wiek"};
     public static  String[] tables = {"Plec", "Rasa", "Podrasa", "Klasa", "Charakter", "Wiek"};
+    public static Person person = new Person();
 
     public static int bonus;
     //public static ArrayList<String> personality = new ArrayList<String>();
@@ -246,6 +247,19 @@ public class Home extends javax.swing.JFrame {
     	catch (IOException e) {
     	}
     }
+    
+    public static void savePersonToDB(Person per) {
+        try {
+            NpcUtil.setToDataBase(per);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+}
+        
+    
     //wypelnienie listy typu JComboBox danymi pobranymi z tabel
     public static void fillCombo() {
         //sex
@@ -303,7 +317,7 @@ public class Home extends javax.swing.JFrame {
         NpcUtil.sex = String.valueOf(GenerateButtonPanel.sexBox.getSelectedItem());
         NpcUtil.race = String.valueOf(GenerateButtonPanel.raceBox.getSelectedItem());
         NpcUtil.subrace = String.valueOf(GenerateButtonPanel.subraceBox.getSelectedItem());
-        NpcUtil.classes = String.valueOf(GenerateButtonPanel.classBox.getSelectedItem());
+        NpcUtil.job = String.valueOf(GenerateButtonPanel.classBox.getSelectedItem());
         NpcUtil.alignment = String.valueOf(GenerateButtonPanel.alignmentBox.getSelectedItem());
         NpcUtil.age = String.valueOf(GenerateButtonPanel.ageBox.getSelectedItem());
     }

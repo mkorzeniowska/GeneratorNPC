@@ -1,9 +1,6 @@
 package npcdesktop;
 
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import util.NpcUtil;
 
 
@@ -185,7 +182,7 @@ public class GenerateButtonPanel extends javax.swing.JPanel {
         Home.imageLabel.setVisible(false);
         Home.rightPanel.setVisible(false);
         Home.rightPanelWithSaveButton1.setVisible(true);
-        Home.generateCharacterSheet();
+        Home.person = Home.generateCharacterSheet();
  
     }//GEN-LAST:event_generateButtonActionPerformed
 

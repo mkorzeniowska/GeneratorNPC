@@ -1,5 +1,7 @@
 package npcdesktop;
 
+import model.Person;
+
 /**
  *
  * @author Marta
@@ -130,6 +132,8 @@ public class RightPanelWithSaveButton extends javax.swing.JPanel {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
+        
+        Home.savePersonToDB(Home.person);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void pdfButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfButtonActionPerformed
