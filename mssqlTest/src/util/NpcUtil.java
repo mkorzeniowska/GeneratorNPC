@@ -18,7 +18,7 @@ import model.Person;
 public class NpcUtil {
     
     //wartości tymczasowe, pod comboBox, czy to jest tu naprawdę potrzebne?
-    public static String sex, name, surname, race, subrace, classes, appearence;
+    public static String sex, name, surname, race, subrace, job, appearence;
     public static String alignment, age;
     public static int ac, hp, speed;
     public static String formatedQuery;
@@ -31,14 +31,22 @@ public class NpcUtil {
         Person p = new Person();
         if("Random".equals(NpcUtil.race)){
             p.setRace(NpcUtil.getDbString("rasa","Rasa"));}
+        else {p.setRace(NpcUtil.race);}
         if("Random".equals(NpcUtil.subrace)) {
                 p.setSubrace(NpcUtil.getDbStringForSubraces("podrasa","Podrasa"));}
-        if("Random".equals(NpcUtil.classes)){
+        else {p.setSubrace(NpcUtil.subrace);}
+        if("Random".equals(NpcUtil.job)){
                 p.setJob(NpcUtil.getDbString("klasa","Klasa"));}
+        else {p.setJob(NpcUtil.job);}
         if ("Random".equals(NpcUtil.alignment)) {
-                p.setCharacter(NpcUtil.getDbStringForAlignment("charakter","Charakter"));}
+                p.setCharacter(NpcUtil.getDbString("charakter","Charakter"));}
+        else {p.setCharacter(NpcUtil.alignment);}
         if ("Random".equals(NpcUtil.age)) {
                 p.setAge(NpcUtil.getDbString("wiek","Wiek"));}
+        else {p.setAge(NpcUtil.age);}
+        if ("Random".equals(NpcUtil.sex)) {
+                p.setSex(NpcUtil.getDbString("plec","Plec"));}
+        else {p.setSex(NpcUtil.sex);}
             
 
         NpcUtil.setRandAttr(p);	//metoda ustalajaca atrybuty
@@ -142,7 +150,7 @@ public class NpcUtil {
 	String output = null;
         String selectQuery = String.format("SELECT TOP 1 p.podrasa FROM Rasa r\n" +
                 "JOIN  Podrasa p ON p.rasaID=r.rasaID\n" +
-                "WHERE r.rasa='%s' ORDER BY NEWID()",race);
+                "WHERE r.rasa='%s' ORDER BY NEWID()",NpcUtil.race);
             try (Connection conn = NpcConProvider.getConnection();
 	        Statement stmt = conn.createStatement();
 	        ResultSet rs = stmt.executeQuery(selectQuery);){
@@ -158,13 +166,13 @@ public class NpcUtil {
 		return output;
 	}
 	
-        public static String getDbStringForAlignment(String colName, String tableName) throws SQLException {         
+    public static String getDbStringForAlignment(String colName, String tableName) throws SQLException {         
 	String output = null;
         String selectQuery = String.format("SELECT TOP 1 c.charakter FROM Charakter c\n" +
                     "JOIN Charakter_Rasy cr ON c.charakterID=cr.charakterID \n" +
                     "JOIN Rasa r ON cr.rasaID=r.rasaID\n" +
                     "WHERE r.rasa='%s' \n" +
-                    "ORDER BY NEWID()",race );
+                    "ORDER BY NEWID()",NpcUtil.race );
             try (Connection conn = NpcConProvider.getConnection();
 	        Statement stmt = conn.createStatement();
 	        ResultSet rs = stmt.executeQuery(selectQuery);){
@@ -178,8 +186,10 @@ public class NpcUtil {
 	        }
 		return output;
 	}
-	  //ustawia zestaw atrybutow dla danego id zestawu
-	public static void setRandAttr(Person person) throws SQLException {        
+    
+    
+    //ustawia zestaw atrybutow dla danego id zestawu
+    public static void setRandAttr(Person person) throws SQLException {        
 		
 		String selectQuery = String.format(
 				"SELECT TOP 1 sila, kondycja, zrecznosc, inteligencja, madrosc, charyzma  FROM Atrybuty ORDER BY NEWID()");
@@ -237,10 +247,46 @@ public class NpcUtil {
     public static void generateSkills(Person p) throws SQLException {
         if("Krasnolud".equals(p.getRace()) || "Gnom".equals(p.getRace()) || "Elf".equals(p.getRace()) || "Niziołek".equals(p.getRace()) ) {
                 //formatedQuery = "SELECT TOP 1 u.umiejetnosc FROM Umiejetnosci ORDER BY NEWID()";
-                p.setSkill(NpcUtil.getDbString("u.umiejetnosc", "Umiejetnosci"));}
+                p.setSkill(NpcUtil.getDbString("umiejetnosc", "Umiejetnosci"));}
         else {
                 //formatedQuery = "SELECT TOP 1 umiejetnosc FROM Umiejetnosci ORDER BY NEWID()";
-                p.setSkill(NpcUtil.getDbString("u.umiejetnosc", "Umiejetnosci"));}
+                p.setSkill(NpcUtil.getDbString("umiejetnosc", "Umiejetnosci"));}
     }
+    
+    
+    //prepared statement do zapisu postaci do bazy
+    public static void setToDataBase(Person p) throws ClassNotFoundException, SQLException {
+       
+        Connection conn = NpcConProvider.getConnection();
+
+        // the mysql insert statement
+        String query = " INSERT INTO Person (plec, imie, nazwisko, rasa, podrasa, klasa, charakter,"
+                + " sila, kondycja, zrecznosc, inteligencja, madrosc, charyzma, wyglad, osobowosc)"
+                        + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        // create the mysql insert preparedstatement
+        PreparedStatement preparedStmt = conn.prepareStatement(query);
+        preparedStmt.setString (1, p.getSex());
+        preparedStmt.setString (2, p.getName());
+        preparedStmt.setString (3, p.getSurname());
+        preparedStmt.setString (4, p.getRace());
+        preparedStmt.setString (5, p.getSubrace());
+        preparedStmt.setString (6, p.getJob());
+        preparedStmt.setString (7, p.getCharacter());
+        preparedStmt.setInt (8, p.getStrength());
+        preparedStmt.setInt (9, p.getConstitution());
+        preparedStmt.setInt (10, p.getDexterity());
+        preparedStmt.setInt (11, p.getIntelligence());
+        preparedStmt.setInt (12, p.getWisdom());
+        preparedStmt.setInt (13, p.getCharisma());
+        preparedStmt.setString (14, p.getApperance());
+        preparedStmt.setString (15, p.getPersonality());
+        //preparedStmt.setString (16, p.getAge());
+        //preparedStmt.setString (17, p.getSkill());
+
+      // execute the preparedstatement
+      preparedStmt.execute();
+      preparedStmt.close();
+               }
     
 }
